@@ -1,8 +1,8 @@
-name: Janitor Pinecone Cleanup
+name: Vector Database Janitor Sweep
 
 on:
   schedule:
-    # Runs every 3 hours automatically
+    # Runs every 3 hours
     - cron: '0 */3 * * *'
   # Allows manual triggers from the GitHub Actions UI
   workflow_dispatch:
@@ -10,24 +10,21 @@ on:
 jobs:
   cleanup:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Check out repository code
+        uses: actions/checkout@v6
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.11'
 
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
-          pip install pinecone
+          pip install pinecone python-dotenv
 
       - name: Run Janitor Script
         env:
           PINECONE_API_KEY: ${{ secrets.PINECONE_API_KEY }}
           PINECONE_INDEX_NAME: ${{ secrets.PINECONE_INDEX_NAME }}
-        run: |
-          python janitor.py
+        run: python janitor.py
