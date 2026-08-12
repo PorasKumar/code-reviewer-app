@@ -12,3 +12,4 @@ rank-bm25
 langgraph-cli[inmem]
 langchain-google-genai
 streamlit
+playwright

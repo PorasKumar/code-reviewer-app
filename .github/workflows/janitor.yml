@@ -21,10 +21,12 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install pinecone python-dotenv
+          pip install pinecone python-dotenv playwright
+          playwright install chromium
 
       - name: Run Janitor Script
         env:
           PINECONE_API_KEY: ${{ secrets.PINECONE_API_KEY }}
           PINECONE_INDEX_NAME: ${{ secrets.PINECONE_INDEX_NAME }}
+          STREAMLIT_APP_URL: ${{ secrets.STREAMLIT_APP_URL }}
         run: python janitor.py

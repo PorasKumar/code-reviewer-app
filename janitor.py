@@ -2,6 +2,7 @@ from pinecone import Pinecone
 import time
 import os
 from dotenv import load_dotenv
+from playwright.sync_api import sync_playwright
 
 load_dotenv()
 
@@ -57,3 +58,43 @@ for nmspc in list(namespaces.keys()):
         print(f"❌ Failed to delete namespace '{nmspc}'\nErro: {e}")
 
 print("✨ Janitor sweep completed successfully!")
+
+
+###########################
+#to wake up app on sleep  #
+###########################
+def wake_streamlit_app():
+    """Opens the app using a headless browser and clicks 'Yes, get this app back up' if asleep."""
+    app_url = os.getenv("STREAMLIT_APP_URL")
+    if not app_url:
+        print("⚠️ STREAMLIT_APP_URL environment variable is not set. Skipping ping.")
+        return
+
+    print(f"📡 Opening Streamlit app at {app_url} with Playwright browser...")
+    try:
+        with sync_playwright() as p:
+            browser = p.chromium.launch(headless=True)
+            page = browser.new_page()
+            page.goto(app_url, timeout=60000)
+            
+            # Wait for Streamlit JS evaluation
+            page.wait_for_timeout(5000)
+            
+            # Look for Streamlit's waking button variants
+            wake_button = page.locator("button:has-text('Yes, get this app back up')")
+            
+            if wake_button.count() > 0 and wake_button.is_visible():
+                print("😴 App is sleeping! Clicking 'Yes, get this app back up'...")
+                wake_button.click()
+                # Wait for backend container reboot
+                page.wait_for_timeout(20000)
+                print("✅ Clicked wake-up button and waited for app boot!")
+            else:
+                print("✅ App is already active and running!")
+
+            browser.close()
+    except Exception as e:
+        print(f"❌ Error during app wake-up routine: {e}")
+
+# Run wake-up routine
+wake_streamlit_app()
