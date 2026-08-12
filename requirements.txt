@@ -1,0 +1,15 @@
+requests
+langgraph
+langchain-text-splitters
+langchain
+langchain-core
+python-dotenv
+sentence-transformers
+pinecone
+pinecone-text
+pinecone-client
+langchain-community
+rank-bm25
+langgraph-cli[inmem]
+langchain-google-genai
+streamlit

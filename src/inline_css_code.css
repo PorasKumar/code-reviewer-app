@@ -1,0 +1,353 @@
+/* Reset Streamlit default focus rings globally */
+    *:focus {
+        outline: none !important;
+        box-shadow: none !important;
+    }
+
+    /* --- NATURAL TOP-TO-BOTTOM FLOW --- */
+    section[data-testid="stMain"] {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important; /* Prevents flex top-overflow on long content */
+        min-height: 100vh !important;
+    }
+
+    div[data-testid="stMainBlockContainer"] {
+        margin-top: auto !important;    /* Centers vertically when content fits screen */
+        margin-bottom: auto !important; /* Collapses safely to top when content expands */
+        padding-top: 2.5rem !important;
+        padding-bottom: 2.5rem !important;
+        width: 100% !important;
+        max-width: none !important;     /* Spreads wide horizontally */
+        box-sizing: border-box !important;
+    }
+
+    /* --- TITLES & HEADINGS --- */
+    .main-title {
+        font-size: 2.8rem;
+        font-weight: 800;
+        text-align: center;
+        margin-bottom: 0.4rem;
+        letter-spacing: -0.8px;
+        color: #0B0F19 !important;
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        padding: 10px 0;
+        text-shadow: 0 0 20px rgba(59, 130, 246, 0.12),
+                     0 0 40px rgba(37, 99, 235, 0.08),
+                     0 0 70px rgba(37, 99, 235, 0.05);
+    }
+    
+    .sub-title {
+        font-size: 0.98rem;
+        color: #334155 !important;
+        text-align: center;
+        margin-bottom: 2rem;
+        font-weight: 600;
+        letter-spacing: 0.2px;
+    }
+
+    /* Headings inside main container (e.g. Actionable Recommendations) */
+    div[data-testid="stMarkdownContainer"] h1,
+    div[data-testid="stMarkdownContainer"] h2,
+    div[data-testid="stMarkdownContainer"] h3,
+    div[data-testid="stMarkdownContainer"] h4 {
+        color: #0F172A !important;
+        font-weight: 800 !important;
+    }
+
+    /* --- BODY TEXT & LIST ENHANCEMENTS (DARK HIGH-CONTRAST TEXT) --- */
+    div[data-testid="stMarkdownContainer"] p,
+    div[data-testid="stMarkdownContainer"] li,
+    div[data-testid="stMarkdownContainer"] span,
+    div[data-testid="stMarkdownContainer"] label,
+    div[data-testid="stMarkdownContainer"] strong {
+        color: #1E293B !important;
+        font-weight: 600 !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+    }
+
+    /* --- INLINE & BLOCK CODE STYLING (THEME MATCHED & HIGH CONTRAST) --- */
+    
+    /* 1. Inline Code Pills (`backticks`) */
+    code, p code, li code {
+        background-color: #DBEAFE !important; /* Soft ice-blue background */
+        color: #1E3A8A !important;            /* Dark royal blue text */
+        padding: 3px 8px !important;
+        border-radius: 6px !important;
+        font-weight: 700 !important;
+        border: 1px solid #93C5FD !important;
+        font-family: 'Fira Code', Monaco, Consolas, monospace !important;
+        font-size: 0.88em !important;
+        word-break: break-word !important;
+        white-space: normal !important;
+    }
+
+    /* 2. Code Block Box Container ( ```python ... ``` ) */
+    div[data-testid="stMarkdownContainer"] pre {
+        background-color: #0F172A !important; /* Deep dark slate box */
+        border: 1.5px solid #1E293B !important;
+        border-radius: 10px !important;
+        padding: 16px 20px !important;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4) !important;
+        overflow-x: auto !important;
+        white-space: pre-wrap !important;
+        word-break: break-all !important;
+        margin: 14px 0 !important;
+    }
+
+    /* 3. Text Inside Multi-Line Code Blocks */
+    div[data-testid="stMarkdownContainer"] pre code,
+    div[data-testid="stMarkdownContainer"] pre code span {
+        background-color: transparent !important;
+        color: #38BDF8 !important; /* Bright cyan/sky blue for ultimate readability */
+        border: none !important;
+        font-size: 0.92rem !important;
+        font-family: 'Fira Code', Monaco, Consolas, monospace !important;
+        font-weight: 600 !important;
+        white-space: pre-wrap !important;
+        text-shadow: none !important;
+    }
+
+    /* --- GLASSMORPHIC EXPANDER (DARKER & FROSTED) --- */
+    div[data-testid="stExpander"] {
+        background: rgba(15, 23, 42, 0.75) !important;
+        backdrop-filter: blur(16px) saturate(180%) !important;
+        -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+        border: 1.5px solid rgba(59, 130, 246, 0.4) !important;
+        border-radius: 12px !important;
+        box-shadow: 0 8px 24px rgba(15, 23, 42, 0.25), 
+                    inset 0 1px 1px rgba(255, 255, 255, 0.2) !important;
+        overflow: hidden !important;
+    }
+
+    /* BRIGHT HIGH-CONTRAST EXPANDER HEADER TEXT AND ARROW */
+    div[data-testid="stExpander"] summary,
+    div[data-testid="stExpander"] summary *,
+    div[data-testid="stExpander"] summary svg {
+        color: #FFFFFF !important;
+        font-weight: 800 !important;
+        font-size: 1.05rem !important;
+    }
+
+    /* Expander Inner Content Area */
+    div[data-testid="stExpanderDetails"] {
+        background: rgba(241, 245, 249, 0.92) !important;
+        border-top: 1.5px solid rgba(59, 130, 246, 0.3) !important;
+        padding: 20px !important;
+        overflow-x: hidden !important;
+    }
+
+    div[data-testid="stExpanderDetails"] p,
+    div[data-testid="stExpanderDetails"] li,
+    div[data-testid="stExpanderDetails"] span {
+        color: #0F172A !important;
+        font-weight: 600 !important;
+    }
+
+    /* --- GLASSMORPHIC ALERT BOXES --- */
+    div[data-testid="stAlertContainer"] {
+        backdrop-filter: blur(16px) saturate(180%) !important;
+        -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+        border-radius: 12px !important;
+        box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.6) !important;
+    }
+
+    div[data-testid="stAlertContainer"] *, 
+    div[data-testid="stAlertContainer"] p, 
+    div[data-testid="stAlertContainer"] span,
+    div[data-testid="stAlertContainer"] svg {
+        color: #090D16 !important;
+        font-weight: 800 !important;
+        font-size: 0.95rem !important;
+    }
+
+    div[data-testid="stAlertContainer"]:has(div[data-baseweb="notification"]:contains("")) {
+        background: rgba(253, 230, 138, 0.85) !important;
+        border: 1.5px solid rgba(217, 119, 6, 0.8) !important;
+    }
+
+    div[data-testid="stAlertContainer"]:has(div[class*="st-emotion-cache"]):contains(""){
+        background: rgba(254, 202, 202, 0.85) !important;
+        border: 1.5px solid rgba(220, 38, 38, 0.8) !important;
+    }
+
+    div[data-testid="stAlertContainer"]:has(div[data-testid="stNotification"]) {
+        background: rgba(187, 247, 208, 0.85) !important;
+        border: 1.5px solid rgba(22, 163, 74, 0.8) !important;
+    }
+
+    /* --- INPUT CONTAINER --- */
+    div[data-testid="stTextInput"] {
+        border: 1.5px solid #1E3A8A !important;
+        border-radius: 10px !important;
+        background: rgba(226, 232, 240, 0.88) !important;
+        backdrop-filter: blur(12px) !important;
+        -webkit-backdrop-filter: blur(12px) !important;
+        box-shadow: 0 4px 14px rgba(15, 23, 42, 0.12) !important;
+        transition: border-color 0.25s ease, box-shadow 0.25s ease !important;
+    }
+
+    div[data-testid="stTextInput"] > div {
+        background: transparent !important;
+        border: none !important;
+        border-radius: 10px !important;
+        outline: none !important;
+    }
+
+    div[data-testid="stTextInput"]:hover {
+        border-color: #2563EB !important;
+        box-shadow: 0 6px 18px rgba(37, 99, 235, 0.25) !important;
+    }
+
+    div[data-testid="stTextInput"] div, 
+    div[data-testid="stTextInput"] input,
+    div[data-baseweb="base-input"],
+    div[data-baseweb="input"],
+    div[data-baseweb="input"]::after,
+    div[data-baseweb="input"] > div::after {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        outline: none !important;
+    }
+
+    div[data-testid="stTextInput"]:focus-within {
+        border-color: #2563EB !important;
+        background: rgba(241, 245, 249, 0.98) !important;
+        box-shadow: 0 0 20px rgba(37, 99, 235, 0.45) !important;
+    }
+
+    div[data-testid="stTextInput"] input {
+        color: #0F172A !important;
+        font-size: 0.95rem !important;
+        font-weight: 700 !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+    }
+
+    div[data-testid="stTextInput"] input::placeholder {
+        color: #1E293B !important;
+        opacity: 0.9 !important;
+        font-weight: 600 !important;
+    }
+
+    /* Main App Background */
+    .stApp {
+        background-image: url('{bg_style}');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    /* Frosted Glass Sidebar */
+    section[data-testid="stSidebar"] {
+        background: rgba(235, 243, 250, 0.65) !important;
+        backdrop-filter: blur(12px) saturate(160%);
+        -webkit-backdrop-filter: blur(12px) saturate(160%);
+        border-right: 1px solid rgba(255, 255, 255, 0.6) !important;
+    }
+
+    section[data-testid="stSidebar"] h3 {
+        color: #1E293B !important;
+        font-size: 0.8rem !important;
+        letter-spacing: 0.05em;
+    }
+
+    .user-card {
+        background: rgba(255, 255, 255, 0.55);
+        backdrop-filter: blur(8px);
+        padding: 14px 16px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        color: #1E293B;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    }
+
+    /* --- BUTTON STYLING --- */
+    .stButton > button {
+        background: linear-gradient(135deg, rgba(241, 245, 249, 0.9) 0%, rgba(218, 232, 247, 0.9) 100%) !important;
+        color: #0F172A !important;
+        border: 1.5px solid #1E3A8A !important;
+        border-radius: 10px !important;
+        font-weight: 700 !important;
+        backdrop-filter: blur(8px) !important;
+        transition: transform 0.28s cubic-bezier(0.25, 1, 0.5, 1),
+                    background-color 0.28s ease,
+                    border-color 0.28s ease,
+                    box-shadow 0.28s ease !important;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+    }
+
+    .stButton > button:hover {
+        background: linear-gradient(135deg, rgba(226, 232, 240, 0.98) 0%, rgba(191, 219, 254, 0.98) 100%) !important;
+        color: #0284C7 !important;
+        border-color: #0284C7 !important;
+        transform: translateY(-2px) scale(1.01) !important;
+        box-shadow: 0 0 25px rgba(2, 132, 199, 0.35), 0 8px 20px rgba(2, 132, 199, 0.2) !important;
+    }
+
+    .stButton > button:active {
+        transform: translateY(0px) scale(0.98) !important;
+        transition: transform 0.08s ease !important;
+    }
+
+
+    /* Center Streamlit button wrapper */
+    div[data-testid="stButton"] {
+        display: flex !important;
+        justify-content: center !important;
+        width: 100% !important;
+        margin-top: 12px !important;
+    }
+
+
+    /* --- MOBILE RESPONSIVENESS --- */
+    @media (max-width: 768px) {
+        div[data-testid="stMainBlockContainer"] {
+            margin-top: 1rem !important;
+            margin-bottom: 1rem !important;
+            padding-top: 1rem !important;
+            padding-bottom: 1rem !important;
+        }
+
+        .main-title {
+            font-size: 2.0rem !important;
+        }
+
+        .sub-title {
+            font-size: 0.85rem !important;
+            margin-bottom: 1.2rem !important;
+        }
+
+        div[data-testid="column"] {
+            width: 100% !important;
+            flex: 1 1 100% !important;
+        }
+
+        div[data-testid="stTextInput"] input {
+            font-size: 0.85rem !important;
+        }
+
+        .stButton {
+            display: flex !important;
+            justify-content: center !important;
+            width: 100% !important;
+        }
+
+        .stButton > button {
+            width: auto !important;
+            min-width: 140px !important;
+            max-width: 200px !important;
+            min-height: 44px !important;
+            padding: 8px 20px !important;
+            font-size: 0.9rem !important;
+            margin: 0 auto !important;
+        }
+    }
