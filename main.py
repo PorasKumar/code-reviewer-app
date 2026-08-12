@@ -38,7 +38,7 @@ if inline_css:
     st.markdown(f"<style>{inline_css}</style>", unsafe_allow_html=True)
 
 #image
-IMAGE_PATH = r"C:\Artificial Intelligence\Projects\Code Reviewer AI\AI Code Reviewer\background.png"
+IMAGE_PATH = r"background.png"
 
 try:
     with open(IMAGE_PATH, "rb") as img_file:
